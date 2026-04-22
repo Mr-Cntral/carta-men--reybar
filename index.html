@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reybar | Carta Digital</title>
+  <meta name="description" content="Carta digital de Reybar. Consulta platos, bebidas, promociones y contacta por WhatsApp." />
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --bg-soft: #18181b;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.1);
+      --text: #f5f2ea;
+      --muted: #c9c1b3;
+      --line: rgba(255,255,255,0.12);
+      --gold: #d4a94f;
+      --gold-2: #f1d38b;
+      --accent: #8f1f2f;
+      --accent-2: #b12c3f;
+      --success: #25d366;
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --maxw: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(177,44,63,.25), transparent 35%),
+        radial-gradient(circle at top right, rgba(212,169,79,.18), transparent 32%),
+        linear-gradient(180deg, #0e0e10 0%, #111214 100%);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(10,10,12,.7);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #231a0a;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: .25s ease;
+    }
+
+    .nav a:hover {
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform .2s ease, opacity .2s ease, background .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-2));
+      color: #231a0a;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-whatsapp {
+      background: var(--success);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 72px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(212,169,79,.14);
+      color: var(--gold-2);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -.03em;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-cards {
+      display: grid;
+      gap: 16px;
+    }
+
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-banner {
+      min-height: 250px;
+      background:
+        linear-gradient(180deg, rgba(15,15,16,.15), rgba(15,15,16,.65)),
+        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+    }
+
+    .hero-banner .content {
+      width: 100%;
+      padding: 24px;
+    }
+
+    .hero-banner h3,
+    .promo-card h3,
+    .info-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+
+    .hero-banner p,
+    .promo-card p,
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      letter-spacing: -.02em;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .badge {
+      border: 1px solid rgba(212,169,79,.35);
+      color: var(--gold-2);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .menu-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-card-image {
+      height: 210px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .menu-card-body {
+      padding: 18px;
+    }
+
+    .menu-row {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .menu-row h3 {
+      margin: 0;
+      font-size: 1.18rem;
+    }
+
+    .price {
+      font-weight: 900;
+      color: var(--gold-2);
+      white-space: nowrap;
+      font-size: 1.08rem;
+    }
+
+    .menu-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      color: #efe8da;
+      font-size: 13px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .list-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .list-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-item:last-child { border-bottom: 0; padding-bottom: 0; }
+    .list-item span:first-child { color: #f4eddf; }
+    .list-item span:last-child { color: var(--gold-2); font-weight: 800; white-space: nowrap; }
+
+    .promo-grid,
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .promo-card,
+    .info-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .promo-card .kicker,
+    .info-card .kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--gold-2);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .contact-card,
+    .hours-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card p,
+    .hours-card p { color: var(--muted); }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin: 18px 0 24px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: #b8af9f;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .small-note {
+      color: #9f978a;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-wrap,
+      .promo-grid,
+      .info-grid,
+      .two-col,
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .brand { justify-content: center; }
+      .nav { justify-content: center; }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .hero-copy,
+      .contact-card,
+      .hours-card,
+      .promo-card,
+      .info-card,
+      .list-panel,
+      .menu-card-body {
+        padding: 18px;
+      }
+
+      .hero-copy p,
+      .hero-banner p,
+      .promo-card p,
+      .info-card p,
+      .contact-card p,
+      .hours-card p {
+        font-size: .97rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#inicio" class="brand">
+        <span class="brand-badge">R</span>
+        <span>Reybar</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#menu">Carta</a>
+        <a href="#bebidas">Bebidas</a>
+        <a href="#promos">Promos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Carta digital premium</span>
+          <h1>Bienvenido a <br />Reybar</h1>
+          <p>
+            Sabor, presencia y una experiencia visual más elegante para que tus clientes vean tus platos,
+            promociones y formas de contacto desde el celular en segundos.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#menu">Ver la carta</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp</a>
+          </div>
+
+          <p class="small-note">
+            Cambia luego el número, platos, precios, textos y fotos por los reales de Reybar.
+          </p>
+        </div>
+
+        <div class="hero-cards">
+          <div class="glass-card hero-banner">
+            <div class="content">
+              <h3>Recomendado de la casa</h3>
+              <p>Platos atractivos, precios visibles y una web lista para compartir en QR.</p>
+            </div>
+          </div>
+
+          <div class="promo-grid" style="grid-template-columns: repeat(2, minmax(0,1fr));">
+            <div class="promo-card">
+              <span class="kicker">Rapidez</span>
+              <h3>Menú claro</h3>
+              <p>Tus clientes entran, ven y eligen rápido.</p>
+            </div>
+            <div class="promo-card">
+              <span class="kicker">Diseño</span>
+              <h3>Mejor presencia</h3>
+              <p>Más elegante que una lista simple de precios.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Nuestra carta</span>
+            <h2>Platos principales</h2>
+            <p>Esta sección está lista para que reemplaces los ejemplos por los platos reales de Reybar.</p>
+          </div>
+          <span class="badge">Actualizado 2026</span>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-card">
+            <div class="menu-card-image" style="background-image:url('https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="menu-card-body">
+              <div class="menu-row">
+                <h3>Parrilla Especial Reybar</h3>
+                <span class="price">S/ 32.00</span>
+              </div>
+              <p>Corte jugoso acompañado de papas doradas, ensalada fresca y salsa de la casa.</p>
+              <div class="meta">
+                <span class="chip">Más pedido</span>
+                <span class="chip">Porción completa</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-card-image" style="background-image:url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="menu-card-body">
+              <div class="menu-row">
+                <h3>Hamburguesa Doble Rey</h3>
+                <span class="price">S/ 24.00</span>
+              </div>
+              <p>Carne doble, queso, vegetales frescos y pan dorado con una presentación más premium.</p>
+              <div class="meta">
+                <span class="chip">Top venta</span>
+                <span class="chip">Con papas</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-card-image" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="menu-card-body">
+              <div class="menu-row">
+                <h3>Alitas BBQ Premium</h3>
+                <span class="price">S/ 22.00</span>
+              </div>
+              <p>Porción generosa con glaseado BBQ y toque picante opcional.</p>
+              <div class="meta">
+                <span class="chip">Para compartir</span>
+                <span class="chip">Sabor BBQ</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-card-image" style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1200&q=80');"></div>
+            <div class="menu-card-body">
+              <div class="menu-row">
+                <h3>Pizza Artesanal</h3>
+                <span class="price">S/ 29.00</span>
+              </div>
+              <p>Masa delgada, queso fundido y toppings seleccionados.</p>
+              <div class="meta">
+                <span class="chip">Artesanal</span>
+                <span class="chip">Ideal para 2</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="bebidas">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Para acompañar</span>
+            <h2>Bebidas y extras</h2>
+            <p>Una presentación limpia para mostrar precios sin que se vea amontonado.</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="list-panel">
+            <h3>Bebidas</h3>
+            <div class="list-item"><span>Gaseosa personal</span><span>S/ 4.00</span></div>
+            <div class="list-item"><span>Limonada frozen</span><span>S/ 8.00</span></div>
+            <div class="list-item"><span>Maracuyá helado</span><span>S/ 8.00</span></div>
+            <div class="list-item"><span>Chicha morada</span><span>S/ 7.00</span></div>
+            <div class="list-item"><span>Cerveza nacional</span><span>S/ 9.00</span></div>
+          </div>
+
+          <div class="list-panel">
+            <h3>Extras</h3>
+            <div class="list-item"><span>Papas extra</span><span>S/ 6.00</span></div>
+            <div class="list-item"><span>Queso extra</span><span>S/ 4.00</span></div>
+            <div class="list-item"><span>Salsa especial</span><span>S/ 3.00</span></div>
+            <div class="list-item"><span>Tocino adicional</span><span>S/ 5.00</span></div>
+            <div class="list-item"><span>Huevo extra</span><span>S/ 3.00</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="promos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Promociones</span>
+            <h2>Haz que destaque lo más importante</h2>
+            <p>Estas tarjetas sirven para resaltar combos, descuentos o platos estrella.</p>
+          </div>
+        </div>
+
+        <div class="promo-grid">
+          <article class="promo-card">
+            <span class="kicker">Combo 1</span>
+            <h3>Hamburguesa + papas + bebida</h3>
+            <p>Oferta ideal para mostrar un combo atractivo en la parte alta de la web.</p>
+            <p style="margin-top:14px; font-weight:800; color:var(--gold-2);">S/ 29.90</p>
+          </article>
+
+          <article class="promo-card">
+            <span class="kicker">Promo 2</span>
+            <h3>2 Pizzas medianas</h3>
+            <p>Perfecto para compartir y fácil de cambiar por cualquier promoción real.</p>
+            <p style="margin-top:14px; font-weight:800; color:var(--gold-2);">S/ 49.90</p>
+          </article>
+
+          <article class="promo-card">
+            <span class="kicker">Promo 3</span>
+            <h3>Alitas + cerveza</h3>
+            <p>Diseñada para que tu menú tenga más presencia comercial y visual.</p>
+            <p style="margin-top:14px; font-weight:800; color:var(--gold-2);">S/ 27.90</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Más confianza</span>
+            <h2>Información útil para tus clientes</h2>
+            <p>Esto hace que la página no se vea solo como una lista, sino como una marca más seria.</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <span class="kicker">Calidad</span>
+            <h3>Ingredientes seleccionados</h3>
+            <p>Haz que tu negocio comunique orden, limpieza y una mejor experiencia.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="kicker">Rapidez</span>
+            <h3>Atención directa por WhatsApp</h3>
+            <p>Tu cliente ve el menú y te escribe sin perder tiempo.</p>
+          </article>
+
+          <article class="info-card">
+            <span class="kicker">Presencia</span>
+            <h3>Diseño más premium</h3>
+            <p>Mucho mejor para QR, redes sociales y compartir el enlace.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container contact-wrap">
+        <div class="contact-card">
+          <span class="eyebrow">Contacto</span>
+          <h2 style="margin:14px 0 8px; font-size: clamp(1.7rem,3vw,2.5rem);">Pide o consulta ahora</h2>
+          <p>Reemplaza estos datos por los reales de Reybar para dejar la página lista.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>WhatsApp</strong>
+              <span>+51 999 999 999</span>
+            </div>
+            <div class="contact-item">
+              <strong>Dirección</strong>
+              <span>Iquitos, Perú</span>
+            </div>
+            <div class="contact-item">
+              <strong>Instagram</strong>
+              <span>@reybar</span>
+            </div>
+          </div>
+
+          <a class="btn btn-whatsapp" href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+        </div>
+
+        <div class="hours-card">
+          <span class="eyebrow">Horario</span>
+          <h3 style="margin:14px 0 8px; font-size:1.5rem;">Estamos listos para atenderte</h3>
+          <p>Puedes editar este bloque si atiendes todos los días o en horarios distintos.</p>
+
+          <div class="list-item"><span>Lunes a jueves</span><span>5:00 p. m. - 11:00 p. m.</span></div>
+          <div class="list-item"><span>Viernes y sábado</span><span>5:00 p. m. - 1:00 a. m.</span></div>
+          <div class="list-item"><span>Domingo</span><span>4:00 p. m. - 10:00 p. m.</span></div>
+
+          <p class="small-note">Consejo: luego puedes agregar tu mapa de Google Maps o un botón extra de ubicación.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Reybar · Carta digital lista para GitHub Pages
+    </div>
+  </footer>
+</body>
+</html>
