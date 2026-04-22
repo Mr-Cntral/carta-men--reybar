@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reybar | Carta Digital</title>
-  <meta name="description" content="Carta digital de Reybar. Consulta platos, bebidas, promociones y contacta por WhatsApp." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Carta digital de Reybar. Cevichería en Iquitos con platos frescos, promociones y contacto directo por WhatsApp e Instagram." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0f0f10;
@@ -55,7 +55,7 @@
       top: 0;
       z-index: 100;
       backdrop-filter: blur(16px);
-      background: rgba(10,10,12,.7);
+      background: rgba(10,10,12,.76);
       border-bottom: 1px solid var(--line);
     }
 
@@ -100,12 +100,14 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
     }
 
     .nav {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
+      align-items: center;
     }
 
     .nav a {
@@ -121,6 +123,10 @@
       color: var(--text);
     }
 
+    .nav .nav-social {
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -134,6 +140,7 @@
     }
 
     .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--gold), var(--gold-2));
       color: #231a0a;
@@ -146,7 +153,12 @@
       box-shadow: var(--shadow);
     }
 
-    /* HERO */
+    .btn-instagram {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
     .hero {
       padding: 72px 0 44px;
     }
@@ -263,7 +275,6 @@
       font-size: .95rem;
     }
 
-    /* SECTIONS */
     section { padding: 32px 0; }
 
     .section-head {
@@ -296,7 +307,6 @@
       font-size: 13px;
     }
 
-    /* MENU GRID — 2 col desktop, 1 col mobile */
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -318,8 +328,10 @@
     }
 
     .menu-card-image {
-      height: 230px;
+      aspect-ratio: 5 / 4;
+      max-height: 205px;
       overflow: hidden;
+      background: #141416;
     }
 
     .menu-card-image img {
@@ -327,7 +339,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform .4s ease;
+      transition: transform .35s ease;
     }
 
     .menu-card:hover .menu-card-image img {
@@ -382,10 +394,18 @@
       font-weight: 500;
     }
 
-    .chip.hot { background: rgba(177,44,63,.18); border-color: rgba(177,44,63,.4); color: #f18a96; }
-    .chip.gold { background: rgba(212,169,79,.14); border-color: rgba(212,169,79,.35); color: var(--gold-2); }
+    .chip.hot {
+      background: rgba(177,44,63,.18);
+      border-color: rgba(177,44,63,.4);
+      color: #f18a96;
+    }
 
-    /* BEBIDAS */
+    .chip.gold {
+      background: rgba(212,169,79,.14);
+      border-color: rgba(212,169,79,.35);
+      color: var(--gold-2);
+    }
+
     .two-col {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -417,7 +437,6 @@
     .list-item span:first-child { color: #f4eddf; }
     .list-item span:last-child { color: var(--gold-2); font-weight: 800; white-space: nowrap; }
 
-    /* PROMOS */
     .promo-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -432,7 +451,8 @@
       box-shadow: var(--shadow);
     }
 
-    .promo-card .kicker {
+    .promo-card .kicker,
+    .info-card .kicker {
       display: inline-block;
       margin-bottom: 12px;
       color: var(--gold-2);
@@ -442,11 +462,27 @@
       letter-spacing: .1em;
     }
 
-    .promo-card h3 { margin: 0 0 10px; font-size: 1.15rem; }
-    .promo-card p { margin: 0; color: var(--muted); font-size: .93rem; }
-    .promo-price { margin-top: 14px !important; font-weight: 800; color: var(--gold-2) !important; font-size: 1.1rem; font-family: 'DM Sans', sans-serif; }
+    .promo-card h3,
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+    }
 
-    /* INFO */
+    .promo-card p,
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .promo-price {
+      margin-top: 14px !important;
+      font-weight: 800;
+      color: var(--gold-2) !important;
+      font-size: 1.1rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+
     .info-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -461,20 +497,6 @@
       box-shadow: var(--shadow);
     }
 
-    .info-card .kicker {
-      display: inline-block;
-      margin-bottom: 12px;
-      color: var(--gold-2);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-
-    .info-card h3 { margin: 0 0 8px; font-size: 1.1rem; }
-    .info-card p { margin: 0; color: var(--muted); font-size: .93rem; }
-
-    /* CONTACTO */
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr .95fr;
@@ -491,7 +513,10 @@
       box-shadow: var(--shadow);
     }
 
-    .contact-card p, .hours-card p { color: var(--muted); }
+    .contact-card p,
+    .hours-card p {
+      color: var(--muted);
+    }
 
     .contact-list {
       display: grid;
@@ -511,9 +536,19 @@
     }
 
     .contact-item strong { color: var(--gold-2); }
-    .contact-item span { color: var(--muted); font-size: .93rem; text-align: right; }
 
-    /* FOOTER */
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+      font-size: .93rem;
+      text-align: right;
+    }
+
+    .contact-item a:hover {
+      color: var(--gold-2);
+      text-decoration: underline;
+    }
+
     footer {
       padding: 34px 0 50px;
       color: #b8af9f;
@@ -527,14 +562,34 @@
       margin-top: 10px;
     }
 
-    /* DIVIDER */
-    .divider {
-      height: 1px;
-      background: var(--line);
-      margin: 8px 0;
+    .mobile-cta {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      display: none;
+      gap: 10px;
+      z-index: 150;
     }
 
-    /* RESPONSIVE */
+    .mobile-cta a {
+      flex: 1;
+      text-align: center;
+      padding: 14px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+
+    .mobile-cta a:first-child {
+      background: #25d366;
+    }
+
+    .mobile-cta a:last-child {
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .contact-wrap,
@@ -578,12 +633,19 @@
       .menu-card-body {
         padding: 18px;
       }
+
+      .mobile-cta {
+        display: flex;
+      }
+
+      body {
+        padding-bottom: 84px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOPBAR -->
   <header class="topbar">
     <div class="container topbar-inner">
       <a href="#inicio" class="brand">
@@ -594,22 +656,22 @@
       </a>
 
       <nav class="nav">
+        <a href="#inicio">Inicio</a>
         <a href="#menu">Carta</a>
         <a href="#bebidas">Bebidas</a>
         <a href="#promos">Promos</a>
         <a href="#contacto">Contacto</a>
+        <a class="nav-social" href="https://instagram.com/reybar" target="_blank" rel="noopener noreferrer">Instagram</a>
       </nav>
     </div>
   </header>
 
   <main>
-
-    <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">🐟 Cevichería · Iquitos</span>
-          <h1>Bienvenido a <br /><span class="highlight">Reybar</span></h1>
+          <h1>Bienvenido a <br><span class="highlight">Reybar</span></h1>
           <p>
             Sabores del mar en el corazón de Iquitos. Ceviches frescos, chicharrones crujientes
             y leche de tigre como solo nosotros la preparamos.
@@ -618,15 +680,21 @@
           <div class="hero-actions">
             <a class="btn btn-primary" href="#menu">Ver la carta</a>
             <a class="btn btn-whatsapp" href="https://wa.me/51978005745" target="_blank" rel="noopener noreferrer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Pedir por WhatsApp
             </a>
+            <a class="btn btn-instagram" href="https://instagram.com/reybar" target="_blank" rel="noopener noreferrer">
+              Ver Instagram
+            </a>
           </div>
+
+          <p class="small-note">
+            Consejo: guarda tus fotos en una carpeta local como <strong>img/</strong> para que no dependan de enlaces externos.
+          </p>
         </div>
 
         <div class="hero-cards">
           <div class="hero-banner glass-card">
-            <img class="banner-bg" src="https://scontent-lim1-1.cdninstagram.com/v/t51.82787-15/582538007_17927481903166991_7541958817677781413_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=Mzc2ODg0MzcwMTk3MjQzOTA3Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=O3gloDaLEzIQ7kNvwH4bbYw&_nc_oc=Adrpm3TrBVd37i4dCKm4wZ-wgmN-UOA_RaLeZd6dZ3JFw8e9T09csTzUL2Q1dQT3UN25lQloXAFQEdOm1-tOXWL0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lim1-1.cdninstagram.com&_nc_gid=qGq3IDdVVxC0ULuWmH0Q5g&_nc_ss=7a32e&oh=00_Af34arnB1wdq_k2mCNnXZC_aWt-4kEGlM8vkC-9hVu0T-A&oe=69EE55AD" alt="Ceviche Reybar" loading="lazy">
+            <img class="banner-bg" src="img/banner-ceviche.jpg" alt="Ceviche Reybar" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80'">
             <div class="overlay"></div>
             <div class="content">
               <h3>Recomendado de la casa</h3>
@@ -650,7 +718,6 @@
       </div>
     </section>
 
-    <!-- MENU -->
     <section id="menu">
       <div class="container">
         <div class="section-head">
@@ -663,15 +730,9 @@
         </div>
 
         <div class="menu-grid">
-
-          <!-- Ceviche Simple -->
           <article class="menu-card">
             <div class="menu-card-image">
-              <img
-                src="https://scontent-lim1-1.cdninstagram.com/v/t51.82787-15/582538007_17927481903166991_7541958817677781413_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=100&ig_cache_key=Mzc2ODg0MzcwMTk3MjQzOTA3Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=O3gloDaLEzIQ7kNvwH4bbYw&_nc_oc=Adrpm3TrBVd37i4dCKm4wZ-wgmN-UOA_RaLeZd6dZ3JFw8e9T09csTzUL2Q1dQT3UN25lQloXAFQEdOm1-tOXWL0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lim1-1.cdninstagram.com&_nc_gid=qGq3IDdVVxC0ULuWmH0Q5g&_nc_ss=7a32e&oh=00_Af34arnB1wdq_k2mCNnXZC_aWt-4kEGlM8vkC-9hVu0T-A&oe=69EE55AD"
-                alt="Ceviche Simple"
-                loading="lazy"
-              >
+              <img src="img/ceviche-simple.jpg" alt="Ceviche Simple" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80'">
             </div>
             <div class="menu-card-body">
               <div class="menu-row">
@@ -686,14 +747,9 @@
             </div>
           </article>
 
-          <!-- Chicharrón de Pescado -->
           <article class="menu-card">
             <div class="menu-card-image">
-              <img
-                src="https://scontent-lim1-1.cdninstagram.com/v/t51.82787-15/584070267_17927779425166991_8162104411111727174_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=110&ig_cache_key=Mzc3MDkzMTI3ODY3ODQwMDIzMQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ygpe74nBx2cQ7kNvwEdJp1g&_nc_oc=Adpb1fdfS2D4tKCedgnqZdqJrE6CLqfOkLXba829aK5smG8L4PJoPZWB2Vx1Zpl7rqkPvtSmVnuiYRKU8SqlWSWb&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lim1-1.cdninstagram.com&_nc_gid=qGq3IDdVVxC0ULuWmH0Q5g&_nc_ss=7a32e&oh=00_Af3ha8AQGncQQWkHwv7QG4tm715JnITEhhRqCX6JqIKmWQ&oe=69EE3F01"
-                alt="Chicharrón de Pescado"
-                loading="lazy"
-              >
+              <img src="img/chicharron-pescado.jpg" alt="Chicharrón de Pescado" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80'">
             </div>
             <div class="menu-card-body">
               <div class="menu-row">
@@ -708,14 +764,9 @@
             </div>
           </article>
 
-          <!-- Leche de Tigre + Chicharrón -->
           <article class="menu-card">
             <div class="menu-card-image">
-              <img
-                src="https://scontent-lim1-1.cdninstagram.com/v/t51.82787-15/587290222_17928945615166991_4008814172250256150_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ig_cache_key=Mzc3ODg1ODc3MTgyNTY3MTgxMg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=6CmhoHGVrN4Q7kNvwEuB8hL&_nc_oc=Ado57iBMMMAaoYIpXbAVgJzK3_DKd_81YAlLPoS_kGbaTreU4uKqu2OjI73EUoOlLc9KoPo3JnEURZYhMN2BOoDE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-lim1-1.cdninstagram.com&_nc_gid=qGq3IDdVVxC0ULuWmH0Q5g&_nc_ss=7a32e&oh=00_Af1VA1yS0YMQcwZs7UVEIsO_L_PtOghHEOXHIDZxpNxNsw&oe=69EE4C0B"
-                alt="Leche de Tigre con Chicharrón"
-                loading="lazy"
-              >
+              <img src="img/leche-tigre-chicharron.jpg" alt="Leche de Tigre con Chicharrón" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80'">
             </div>
             <div class="menu-card-body">
               <div class="menu-row">
@@ -730,28 +781,26 @@
             </div>
           </article>
 
-          <!-- Placeholder para 4to plato -->
-          <article class="menu-card" style="background: linear-gradient(180deg, rgba(212,169,79,.08), rgba(212,169,79,.03)); border-color: rgba(212,169,79,.25);">
-            <div class="menu-card-image" style="background: rgba(255,255,255,.04); display:flex; align-items:center; justify-content:center; height:230px;">
-              <span style="font-size: 3rem; opacity:.4;">🐟</span>
+          <article class="menu-card">
+            <div class="menu-card-image">
+              <img src="img/leche-tigre-especial.jpg" alt="Leche de Tigre Especial" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1565299585323-38174c4a6b7b?auto=format&fit=crop&w=1200&q=80'">
             </div>
             <div class="menu-card-body">
               <div class="menu-row">
-                <h3 style="color:var(--muted);">Próximamente</h3>
-                <span class="price" style="opacity:.4;">—</span>
+                <h3>Leche de Tigre Especial</h3>
+                <span class="price">S/ 15.00</span>
               </div>
-              <p>Agrega aquí tu próximo plato estrella. Escríbenos para actualizar la carta.</p>
+              <p>Concentrado marino con el toque intenso de la casa, ideal para abrir el apetito.</p>
               <div class="meta">
-                <span class="chip">Pregunta al mesero</span>
+                <span class="chip gold">Recomendado</span>
+                <span class="chip">Entrada</span>
               </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- BEBIDAS -->
     <section id="bebidas">
       <div class="container">
         <div class="section-head">
@@ -785,7 +834,6 @@
       </div>
     </section>
 
-    <!-- PROMOS -->
     <section id="promos">
       <div class="container">
         <div class="section-head">
@@ -821,7 +869,6 @@
       </div>
     </section>
 
-    <!-- INFO -->
     <section>
       <div class="container">
         <div class="section-head">
@@ -853,13 +900,12 @@
       </div>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto">
       <div class="container contact-wrap">
         <div class="contact-card">
           <span class="eyebrow">Contacto</span>
           <h2 style="margin:14px 0 8px; font-size: clamp(1.7rem,3vw,2.5rem);">Pide o consulta ahora</h2>
-          <p>Estamos disponibles por WhatsApp para tomar tu pedido o responder tus dudas.</p>
+          <p>Estamos disponibles por WhatsApp e Instagram para tomar tu pedido o responder tus dudas.</p>
 
           <div class="contact-list">
             <div class="contact-item">
@@ -872,20 +918,24 @@
             </div>
             <div class="contact-item">
               <strong>Instagram</strong>
-              <span>@reybar</span>
+              <a href="https://instagram.com/reybar" target="_blank" rel="noopener noreferrer">@reybar</a>
             </div>
           </div>
 
-          <a class="btn btn-whatsapp" href="https://wa.me/51978005745" target="_blank" rel="noopener noreferrer">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Escribir por WhatsApp
-          </a>
+          <div class="hero-actions" style="margin-top:0;">
+            <a class="btn btn-whatsapp" href="https://wa.me/51978005745" target="_blank" rel="noopener noreferrer">
+              Escribir por WhatsApp
+            </a>
+            <a class="btn btn-instagram" href="https://instagram.com/reybar" target="_blank" rel="noopener noreferrer">
+              Abrir Instagram
+            </a>
+          </div>
         </div>
 
         <div class="hours-card">
           <span class="eyebrow">Horario</span>
           <h3 style="margin:14px 0 8px; font-size:1.5rem;">Estamos listos para atenderte</h3>
-          <p>Ven a visitarnos o escríbenos por WhatsApp antes de salir.</p>
+          <p>Ven a visitarnos o escríbenos antes de salir.</p>
 
           <div class="list-item"><span>Lunes a jueves</span><span>12:00 p. m. – 8:00 p. m.</span></div>
           <div class="list-item"><span>Viernes y sábado</span><span>12:00 p. m. – 9:00 p. m.</span></div>
@@ -895,7 +945,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -903,6 +952,11 @@
       © 2026 Reybar · Cevichería · Iquitos, Perú
     </div>
   </footer>
+
+  <div class="mobile-cta">
+    <a href="https://wa.me/51978005745" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://instagram.com/reybar" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </div>
 
 </body>
 </html>
