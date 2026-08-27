@@ -29,6 +29,18 @@ const indexLabel = dialog.querySelector('.dialog-index')!;
 const countLabel = dialog.querySelector('.dialog-count')!;
 const items = dialog.querySelector('.menu-items')!;
 let active = 0;
+const dishImages: Record<string, string> = {
+  'Leche de tigre': './leche%20de%20tigre.jpeg',
+  'Ceviche simple': './Ceviche%20simple.jpeg',
+  'Chicharrón de pota': './chicharron%20de%20pota.jpeg',
+  'Arroz con mariscos': './arroz%20con%20mariscos.jpeg',
+  'Chaufa regional': './chaufa%20regional.jpeg',
+  'Pescado a la plancha': './pescado%20a%20la%20plancha.jpeg',
+  'Saltado de pollo': './Pollo%20saltado.jpeg',
+  'Bisteck a lo pobre': './Bistck%20a%20lo%20pobre.jpeg',
+  'Alitas acevichadas': './alitas%20acevichadas.jpeg',
+  'Con lomo saltado': './tacu%20tacu%20con%20bisteck.jpeg'
+};
 
 function renderCategory(next: number) {
   active = (next + menu.length) % menu.length;
@@ -36,7 +48,7 @@ function renderCategory(next: number) {
   indexLabel.textContent = `0${active + 1}`;
   heading.textContent = category.name;
   countLabel.textContent = `${category.items.length} opciones`;
-  items.innerHTML = category.items.map(([name, price], itemIndex) => `<div class="menu-row" style="--delay:${itemIndex * 45}ms"><span>${name}</span><strong>${price}</strong></div>`).join('');
+  items.innerHTML = category.items.map(([name, price], itemIndex) => `<button class="menu-row${dishImages[name] ? ' has-photo' : ''}" data-dish-name="${name}" data-dish-price="${price}" data-dish-image="${dishImages[name] || ''}" style="--delay:${itemIndex * 45}ms"><span>${name}</span><strong>${price}</strong>${dishImages[name] ? '<b class="row-arrow">↗</b>' : ''}</button>`).join('');
   dialog.querySelector<HTMLButtonElement>('.prev-category')!.textContent = `← ${menu[(active - 1 + menu.length) % menu.length].name}`;
   dialog.querySelector<HTMLButtonElement>('.next-category')!.textContent = `${menu[(active + 1) % menu.length].name} →`;
 }
@@ -48,4 +60,19 @@ dialog.querySelector('.close-dialog')?.addEventListener('click', () => { dialog.
 dialog.querySelector('.prev-category')?.addEventListener('click', () => renderCategory(active - 1));
 dialog.querySelector('.next-category')?.addEventListener('click', () => renderCategory(active + 1));
 dialog.addEventListener('click', (event) => { if (event.target === dialog) { dialog.close(); document.body.classList.remove('dialog-open'); } });
+const dishDialog = document.querySelector<HTMLDialogElement>('#dish-dialog')!;
+const dishImage = dishDialog.querySelector('img')!;
+const dishTitle = dishDialog.querySelector('h2')!;
+const dishPrice = dishDialog.querySelector('strong')!;
+items.addEventListener('click', (event) => {
+  const row = (event.target as HTMLElement).closest<HTMLButtonElement>('.menu-row.has-photo');
+  if (!row) return;
+  dishImage.src = row.dataset.dishImage || '';
+  dishImage.alt = row.dataset.dishName || '';
+  dishTitle.textContent = row.dataset.dishName || '';
+  dishPrice.textContent = row.dataset.dishPrice || '';
+  dishDialog.showModal();
+});
+dishDialog.querySelector('.dish-close')?.addEventListener('click', () => dishDialog.close());
+dishDialog.addEventListener('click', (event) => { if (event.target === dishDialog) dishDialog.close(); });
 document.addEventListener('keydown', (event) => { if (!dialog.open) return; if (event.key === 'Escape') document.body.classList.remove('dialog-open'); if (event.key === 'ArrowLeft') renderCategory(active - 1); if (event.key === 'ArrowRight') renderCategory(active + 1); });
