@@ -31,9 +31,9 @@ const items = dialog.querySelector('.menu-items')!;
 let active = 0;
 const dishImages: Record<string, string> = {
   'Leche de tigre': './leche%20de%20tigre.jpeg',
-  'Ceviche simple': './Ceviche%20simple.jpeg',
-  'Chicharrón de pota': './chicharron%20de%20pota.jpeg',
-  'Arroz con mariscos': './arroz%20con%20mariscos.jpeg',
+  'Ceviche simple': './ceviche-simple-cutout.png',
+  'Chicharrón de pota': './chicharron-pota-cutout.png',
+  'Arroz con mariscos': './arroz-mariscos-cutout.png',
   'Chaufa regional': './chaufa%20regional.jpeg',
   'Pescado a la plancha': './pescado%20a%20la%20plancha.jpeg',
   'Saltado de pollo': './Pollo%20saltado.jpeg',
