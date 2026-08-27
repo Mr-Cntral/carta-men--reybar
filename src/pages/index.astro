@@ -1,0 +1,50 @@
+---
+import { menu } from '../data/menu';
+import '../styles/global.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Carta digital de Reybar cevichería restobar." />
+    <title>reybar — cevichería restobar</title>
+  </head>
+  <body>
+    <div class="grain"></div>
+    <header class="topbar">
+      <a class="brand" href="#inicio"><span class="brand-mark"><img src="/logo-mark.png" alt="" /></span><span>reybar<small>CEVICHERÍA RESTOBAR</small></span></a>
+      <nav><a href="#carta">Carta</a><a href="#historia">Nuestra forma</a><a href="#contacto">Visítanos</a></nav>
+      <a class="header-cta" href="#carta">Ver carta <span>↗</span></a>
+    </header>
+
+    <main id="inicio">
+      <section class="hero" aria-label="Presentación Reybar">
+        <div class="hero-copy reveal"><p class="eyebrow">Piura · cocina marina</p><h1>El mar servido<br /><em>a nuestra manera.</em></h1><p class="hero-lede">Ceviches, mariscos y sabores peruanos para comer sin apuro.</p><a class="button button-light" href="#carta">Explorar la carta <span>↓</span></a></div>
+        <div class="hero-art reveal" aria-hidden="true">
+          <div class="sun-orbit orbit-one"></div><div class="sun-orbit orbit-two"></div>
+          <div class="dish-frame"><img src="/Ceviche_mixto.jpg" alt="Ceviche mixto de Reybar" /><span class="dish-label">01 / ceviche mixto</span></div>
+          <div class="floating-note note-top">fresco<br /><b>por naturaleza</b></div><div class="floating-note note-bottom">sabor que<br /><b>se queda</b></div>
+        </div>
+        <div class="hero-scroll">desliza para descubrir <span></span></div>
+      </section>
+
+      <section id="historia" class="story section-pad">
+        <div class="section-intro reveal"><p class="eyebrow">La experiencia Reybar</p><h2>Una carta que<br /><em>se mueve contigo.</em></h2></div>
+        <div class="story-copy reveal"><p>Elige una categoría, ábrela y encuentra cada plato sin perderte entre páginas. Una carta viva, clara y pensada para el celular.</p><div class="stat-row"><div><strong>12</strong><span>categorías</span></div><div><strong>58</strong><span>opciones</span></div><div><strong>100%</strong><span>sabor peruano</span></div></div></div>
+      </section>
+
+      <section class="scroll-illustration" aria-label="Ilustración animada del ceviche"><div class="illustration-copy"><p class="eyebrow">Hecho al momento</p><h2>La frescura<br /><em>se nota.</em></h2></div><svg class="ceviche-svg" viewBox="0 0 500 400" role="img" aria-label="Ilustración de un plato de ceviche"><path class="svg-draw" d="M83 181 C108 310 392 310 417 181 C336 232 164 232 83 181Z"/><ellipse class="svg-fill" cx="250" cy="179" rx="168" ry="56"/><path class="svg-draw" d="M159 148 C189 119 212 139 238 151 C260 161 282 124 318 145 C348 162 369 144 381 154"/><circle class="ingredient lime" cx="176" cy="159" r="20"/><circle class="ingredient onion" cx="284" cy="166" r="13"/><path class="ingredient herb" d="M328 126 l12 -26 12 26 -12 20Z"/><path class="ingredient chili" d="M224 129 C238 95 259 103 269 128"/><path class="svg-draw" d="M201 289 C206 332 294 332 299 289"/></svg></section>
+
+      <section id="carta" class="menu-section section-pad"><div class="section-intro reveal"><p class="eyebrow">Elige tu antojo</p><h2>La carta<br /><em>Reybar.</em></h2><p class="section-note">Toca una categoría para ver sus platos y precios.</p></div><div class="category-grid">{menu.map((category, index) => <button class="category-card reveal" data-index={index} style={`--delay: ${index * 45}ms`}><span class="category-number">0{index + 1}</span><span class="category-name">{category.name}</span><span class="category-count">{category.items.length} opciones <b>↗</b></span></button>)}</div></section>
+
+      <section class="feature section-pad"><div class="feature-image"><img src="/Ceviche_mixto.jpg" alt="Ceviche mixto" /></div><div class="feature-copy reveal"><p class="eyebrow">El favorito de la casa</p><h2>Ceviche<br /><em>mixto.</em></h2><p>Cuando quieres probar un poco de todo. Encuéntralo dentro de la categoría Ceviches.</p><button class="text-link" data-open-category="0">Ver en la carta <span>↗</span></button></div></section>
+    </main>
+
+    <footer id="contacto" class="footer section-pad"><div><span class="brand-word">reybar</span><p>cevichería restobar</p></div><div class="footer-right"><p>Una mesa, un ceviche<br />y buen momento.</p><a href="#inicio">Volver arriba ↑</a></div></footer>
+
+    <dialog class="menu-dialog" id="menu-dialog"><div class="dialog-top"><p class="eyebrow">Carta Reybar</p><button class="close-dialog" aria-label="Cerrar carta">×</button></div><div class="dialog-heading"><span class="dialog-index"></span><h2></h2><span class="dialog-count"></span></div><div class="menu-items"></div><div class="dialog-nav"><button class="prev-category">← Anterior</button><button class="next-category">Siguiente →</button></div></dialog>
+    <script define:vars={{ menu }}>window.__REYBAR_MENU__ = menu;</script>
+    <script src="../scripts/main.ts"></script>
+  </body>
+</html>
