@@ -7,3 +7,5 @@
 @media(max-width:800px){.dish-frame{height:300px;width:82%;right:0;border-radius:24px}}
 .dish-frame{overflow:visible;background:transparent;border:0;border-radius:0;box-shadow:none}.dish-frame:after{display:none}.dish-frame img{object-fit:contain;filter:drop-shadow(0 24px 24px rgba(0,0,0,.3));transform:none}.dish-label{bottom:2px;left:10px;color:rgba(231,247,248,.78)}
 @media(max-width:800px){.dish-frame{height:300px;width:90%;right:-2%}.dish-label{bottom:-4px;left:4px;font-size:9px}}
+.menu-dialog{max-width:680px}
+@media(max-width:700px){.menu-dialog{width:100vw;max-width:none;margin:0;inset:auto 0 0 0;padding:28px 22px;border-radius:0}.dialog-heading h2{font-size:clamp(2.6rem,12vw,4.5rem)}.menu-row{padding:16px 0}}
