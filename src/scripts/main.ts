@@ -30,16 +30,16 @@ const countLabel = dialog.querySelector('.dialog-count')!;
 const items = dialog.querySelector('.menu-items')!;
 let active = 0;
 const dishImages: Record<string, string> = {
-  'Leche de tigre': './leche%20de%20tigre.jpeg',
+  'Leche de tigre': './leche-de-tigre-cutout.png',
   'Ceviche simple': './ceviche-simple-cutout.png',
   'Chicharrón de pota': './chicharron-pota-cutout.png',
   'Arroz con mariscos': './arroz-mariscos-cutout.png',
-  'Chaufa regional': './chaufa%20regional.jpeg',
-  'Pescado a la plancha': './pescado%20a%20la%20plancha.jpeg',
-  'Saltado de pollo': './Pollo%20saltado.jpeg',
-  'Bisteck a lo pobre': './Bistck%20a%20lo%20pobre.jpeg',
-  'Alitas acevichadas': './alitas%20acevichadas.jpeg',
-  'Con lomo saltado': './tacu%20tacu%20con%20bisteck.jpeg'
+  'Chaufa regional': './chaufa-regional-cutout.png',
+  'Pescado a la plancha': './pescado-plancha-cutout.png',
+  'Saltado de pollo': './pollo-saltado-cutout.png',
+  'Bisteck a lo pobre': './bisteck-lo-pobre-cutout.png',
+  'Alitas acevichadas': './alitas-acevichadas-cutout.png',
+  'Con lomo saltado': './tacu-tacu-bisteck-cutout.png'
 };
 
 function renderCategory(next: number) {
