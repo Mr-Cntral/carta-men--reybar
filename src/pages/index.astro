@@ -23,7 +23,7 @@ import '../styles/global.css';
         <div class="hero-copy reveal"><p class="eyebrow">Piura · cocina marina</p><h1>El mar servido<br /><em>a nuestra manera.</em></h1><p class="hero-lede">Ceviches, mariscos y sabores peruanos para comer sin apuro.</p><a class="button button-light" href="#carta">Explorar la carta <span>↓</span></a></div>
         <div class="hero-art reveal" aria-hidden="true">
           <div class="sun-orbit orbit-one"></div><div class="sun-orbit orbit-two"></div>
-          <div class="dish-frame"><img src="./Ceviche_mixto.jpg" alt="Ceviche mixto de Reybar" /><span class="dish-label">01 / ceviche mixto</span></div>
+          <div class="dish-frame"><img src="./ceviche-mixto-v2.png" alt="Ceviche mixto de Reybar" /><span class="dish-label">01 / ceviche mixto</span></div>
           <div class="floating-note note-top">fresco<br /><b>por naturaleza</b></div><div class="floating-note note-bottom">sabor que<br /><b>se queda</b></div>
         </div>
         <div class="hero-scroll">desliza para descubrir <span></span></div>
@@ -38,7 +38,8 @@ import '../styles/global.css';
 
       <section id="carta" class="menu-section section-pad"><div class="section-intro reveal"><p class="eyebrow">Elige tu antojo</p><h2>La carta<br /><em>Reybar.</em></h2><p class="section-note">Toca una categoría para ver sus platos y precios.</p></div><div class="category-grid">{menu.map((category, index) => <button class="category-card reveal" data-index={index} style={`--delay: ${index * 45}ms`}><span class="category-number">0{index + 1}</span><span class="category-name">{category.name}</span><span class="category-count">{category.items.length} opciones <b>↗</b></span></button>)}</div></section>
 
-      <section class="feature section-pad"><div class="feature-image"><img src="./Ceviche_mixto.jpg" alt="Ceviche mixto" /></div><div class="feature-copy reveal"><p class="eyebrow">El favorito de la casa</p><h2>Ceviche<br /><em>mixto.</em></h2><p>Cuando quieres probar un poco de todo. Encuéntralo dentro de la categoría Ceviches.</p><button class="text-link" data-open-category="0">Ver en la carta <span>↗</span></button></div></section>
+      <section class="feature section-pad"><div class="feature-image"><img src="./arroz-mariscos-v2.png" alt="Arroz con mariscos" /></div><div class="feature-copy reveal"><p class="eyebrow">El favorito de la casa</p><h2>Arroz con<br /><em>mariscos.</em></h2><p>Un clásico de la casa, con sabor marino y servido al momento.</p><button class="text-link" data-open-category="2">Ver en la carta <span>↗</span></button></div></section>
+      <section class="dish-trio section-pad"><div class="section-intro reveal"><p class="eyebrow">Sabores del mar</p><h2>Tres formas<br /><em>de disfrutar.</em></h2></div><div class="dish-trio-grid"><article><img src="./ceviche-mixto-v2.png" alt="Ceviche mixto" /><span>Ceviches</span></article><article><img src="./chicharron-pescado-v2.png" alt="Chicharrón de pescado" /><span>Fritos</span></article><article><img src="./arroz-mariscos-v2.png" alt="Arroz con mariscos" /><span>Mariscos</span></article></div></section>
     </main>
 
     <footer id="contacto" class="footer section-pad"><div><span class="brand-word">reybar</span><p>cevichería restobar</p></div><div class="footer-right"><p>Una mesa, un ceviche<br />y buen momento.</p><a href="#inicio">Volver arriba ↑</a></div></footer>
