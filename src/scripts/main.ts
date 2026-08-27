@@ -30,16 +30,16 @@ const countLabel = dialog.querySelector('.dialog-count')!;
 const items = dialog.querySelector('.menu-items')!;
 let active = 0;
 const dishImages: Record<string, string> = {
-  'Leche de tigre': './leche-de-tigre-cutout.png',
-  'Ceviche simple': './ceviche-simple-cutout.png',
-  'Chicharrón de pota': './chicharron-pota-cutout.png',
-  'Arroz con mariscos': './arroz-mariscos-cutout.png',
-  'Chaufa regional': './chaufa-regional-cutout.png',
-  'Pescado a la plancha': './pescado-plancha-cutout.png',
-  'Saltado de pollo': './pollo-saltado-cutout.png',
-  'Bisteck a lo pobre': './bisteck-lo-pobre-cutout.png',
-  'Alitas acevichadas': './alitas-acevichadas-cutout.png',
-  'Con lomo saltado': './tacu-tacu-bisteck-cutout.png'
+  'Leche de tigre': './cutouts/leche-de-tigre-cutout.png',
+  'Ceviche simple': './cutouts/ceviche-simple-cutout.png',
+  'Chicharrón de pota': './cutouts/chicharron-pota-cutout.png',
+  'Arroz con mariscos': './cutouts/arroz-mariscos-cutout.png',
+  'Chaufa regional': './cutouts/chaufa-regional-cutout.png',
+  'Pescado a la plancha': './cutouts/pescado-plancha-cutout.png',
+  'Saltado de pollo': './cutouts/pollo-saltado-cutout.png',
+  'Bisteck a lo pobre': './cutouts/bisteck-lo-pobre-cutout.png',
+  'Alitas acevichadas': './cutouts/alitas-acevichadas-cutout.png',
+  'Con lomo saltado': './cutouts/tacu-tacu-bisteck-cutout.png'
 };
 
 function renderCategory(next: number) {
